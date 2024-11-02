@@ -1,0 +1,45 @@
+# コンテナの定義
+services:
+ # MySQLデータベースのコンテナ設定
+ db:
+   image: mysql:8.0
+   # MySQLの環境変数設定
+   environment:
+     MYSQL_ROOT_PASSWORD: password  # rootユーザーのパスワード
+     MYSQL_USER: user              # 作成するMySQLユーザー
+     MYSQL_PASSWORD: password      # 作成するMySQLユーザーのパスワード
+     MYSQL_ROOT_HOST: '%'
+   # データの永続化設定
+   volumes:
+     - mysql_volume:/var/lib/mysql  # MySQLのデータを永続化
+   # ポート転送設定（ホスト:コンテナ）
+   ports:
+     - '3306:3306'
+   # MySQL8.0でのパスワード認証方式を設定
+   command: --default-authentication-plugin=mysql_native_password
+
+ # Railsアプリケーションのコンテナ設定
+ web:
+   # Dockerfileからイメージをビルド
+   build:
+     context: .                     # ビルドコンテキストはカレントディレクトリ
+     dockerfile: Dockerfile         # 使用するDockerfileを指定
+   # コンテナ起動時に実行されるコマンド
+   command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails tailwindcss:build && bundle exec rails s -p 3000 -b '0.0.0.0'"
+   # ホストとコンテナ間でのファイル共有設定
+   volumes:
+     - .:/sample_rails             # カレントディレクトリをコンテナの/sample_railsにマウント
+   # ポート転送設定（ホスト:コンテナ）
+   ports:
+     - 3000:3000
+   # コンテナの標準入力を開いたままにする
+   stdin_open: true
+   # 疑似ターミナルを割り当て
+   tty: true
+   # dbコンテナが起動してから開始するように設定
+   depends_on:
+     - db
+
+# データを永続化するボリュームの定義
+volumes:
+ mysql_volume:                      # MySQLデータを永続化するための名前付きボリューム
