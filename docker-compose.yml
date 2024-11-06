@@ -6,8 +6,6 @@ services:
    # MySQLの環境変数設定
    environment:
      MYSQL_ROOT_PASSWORD: password  # rootユーザーのパスワード
-     MYSQL_USER: user              # 作成するMySQLユーザー
-     MYSQL_PASSWORD: password      # 作成するMySQLユーザーのパスワード
      MYSQL_ROOT_HOST: '%'
    # データの永続化設定
    volumes:
