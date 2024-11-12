@@ -30,9 +30,7 @@ services:
    # ポート転送設定（ホスト:コンテナ）
    ports:
      - 3000:3000
-   # コンテナの標準入力を開いたままにする
    stdin_open: true
-   # 疑似ターミナルを割り当て
    tty: true
    # dbコンテナが起動してから開始するように設定
    depends_on:
@@ -40,4 +38,4 @@ services:
 
 # データを永続化するボリュームの定義
 volumes:
- mysql_volume:                      # MySQLデータを永続化するための名前付きボリューム
+ mysql_volume:                      # MySQLデータを永続化するためのボリューム
