@@ -1,78 +1,31 @@
-# p ["コーヒー", "カフェラテ"]
+p ["コーヒー", "カフェラテ"].size
 
-# drinks = ["コーヒー", "カフェラテ", "モカ"]
-# p drinks[1]
-# p drinks.first
-# p drinks.last
+p result = [1, 2, 3, 4, 5].sum
 
-# p ["コーヒー", "カフェラテ"].push("モカ")
-# p [2, 3].unshift(1)
+p ["モカ", "カフェラテ", "モカ"].uniq
 
-# p [1, 2] + [3, 4]
+arr = ["1", "2"]
+p arr.clear
 
-# p ["ティーラテ", "カフェラテ", "抹茶ラテ"]
+p ["モカ", "カフェラテ", "カプチーノ"].sample
 
-# drinks = ["ティーラテ", "カフェラテ", "抹茶ラテ"]
-# drinks.each do |drink|
-#   puts drink + "お願いします"
-# end
+p ["大吉", "中吉", "末吉", "凶"].sample
 
-# numbers = [1, 2, 3]
-# sum = 0
-# numbers.each do |num|
-#   sum += num
-# end
-# p sum
+p [100, 50, 300].sort
+p [100, 50, 300].sort.reverse
 
-# [].each do |x|
-#   puts x
-# end
+p "cba".reverse
 
-# p numbers.sum
+p ["100", "50", "300"].join(",")
 
-questions = ["apple", "strawberry", "cherry", "persimmon", "pumpkin", "carrot", "watermelon", "pear", "tomato", "persimmon", "eggplant"]
-question = questions.sample
-answer = ""
+p "100,50,300".split(",")
 
-index = 0
-question.size.times do
-  answer += "_"
-  index += 1
-end
+p [1, 2, 3].map {|num| num * 3}
 
-life = 5
-index = 0
-target_numbers = []
-while life >= 1
-  puts "現在のライフ#{life}"
-  puts "#{answer}"
-  input = gets.chomp
-  input = input.downcase
-  if input.size > 1
-    puts "入力できるのは1文字です。"
-    next
-  end
-  unless ('a'..'z').include?(input)
-    puts "入力できるのはアルファベットのみです。"
-    next
-  end
-  while question.size > index
-    target_numbers.push(index) if question[index] == input
-    index += 1
-  end
-  index = 0
-  unless target_numbers.empty?
-    target_numbers.each do |num|
-      answer[num] = input
-    end
-    target_numbers = []
-    unless answer.include?("_")
-      puts "クリア！"
-      break
-    end
-  else
-    life -= 1
-  end
-end
+p ["abc", "xyz"].map(&:reverse)
 
-puts "正解は#{question}でした！"
+p ["aya", "achi", "Tama"].map(&:downcase).sort
+
+p ["3", "5", "1"].map(&:to_i).sort
+
+p "coffee".to_sym
