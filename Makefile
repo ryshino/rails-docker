@@ -25,7 +25,7 @@ logs:
 	docker-compose logs -f
 
 # Railsコンテナに入る
-shell:
+bash:
 	docker-compose exec web bash
 
 # MySQLコンソールに入る
