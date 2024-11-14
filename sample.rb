@@ -1,52 +1,67 @@
-def order
-  puts "カフェラテください"
+hash = {:coffee => 300, :caffe_latte => 400}
+p hash.class
+p Hash.new
+
+class CaffeLatte
 end
 
-order
+p CaffeLatte.new.class
 
-def area(x)
-  x * x
+class Item
+  def name
+    "チーズケーキ"
+  end
+end
+item = Item.new
+p item.name
+
+
+class Item
+  def name=(text)
+    @name = text
+  end
+
+  def name
+    @name
+  end
 end
 
-puts area(3)
+item = Item.new
+p item.name = "チーズケーキ"
 
-def dice
-  [1, 2, 3, 4, 5, 6].sample
+class Item
+  def initialize
+    puts "商品を扱うオブジェクト"
+  end
 end
 
-puts dice
+p Item.new
 
-def order(item)
-  "#{item}ください"
+class Item
+  def initialize(name)
+    @name = name
+  end
+
+  def name
+    @name
+  end
 end
 
-puts order("カフェラテ")
-puts order("モカ")
+item1 = Item.new("マフィン")
+item2 = Item.new("スコーン")
 
-def dice_core
-  [1, 2, 3, 4, 5, 6].sample
-end
-def dice
-  result = dice_core
-  return result unless result == 1
+p item1.name
+p item2.name
 
-  puts "もう一回！"
-  dice_core
+class Drink
+  def self.todays_special
+    "ホワイトモカ"
+  end
 end
 
-puts dice
-
-def price(item, size = "ショート")
-  items = {"コーヒー" => 300, "カフェラテ" => 400}
-  sizes = {"ショート" => 0, "トール" => 50, "ベンティ" => 100}
-  items[item] + sizes[size]
+class Food < Item
 end
 
-puts price("コーヒー")
-puts price("カフェラテ", "トール")
-
-def order(drink)
-  puts "#{drink}"
-end
-
-order("コーヒー")
+food = Food.new
+p food.name = "チーズケーキ"
+p food.name
