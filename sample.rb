@@ -1,31 +1,46 @@
-p ["コーヒー", "カフェラテ"].size
+menu1 = {coffee: 300, caffe_latte: 400}
+p menu1[:caffe_latte]
 
-p result = [1, 2, 3, 4, 5].sum
+menu2 = {"モカ" => "チョコレートシロップとミルク入り", "カフェラテ" => "ミルク入り"}
+p menu2["モカ"]
 
-p ["モカ", "カフェラテ", "モカ"].uniq
+menu1[:tea] = 300
+p menu1
+menu1.delete(:coffee)
+p menu1
 
-arr = ["1", "2"]
-p arr.clear
+menu1.delete(:tea)
+menu1.default = "紅茶はありませんか？"
+p menu1[:tea]
 
-p ["モカ", "カフェラテ", "カプチーノ"].sample
+p "カフェラテください" if menu1[:caffe_latte] <= 500
 
-p ["大吉", "中吉", "末吉", "凶"].sample
+menu = {"コーヒー" => 300, "カフェラテ" => 400}
+menu.each do |key, value|
+  puts "#{key} - #{value}円"
+end
+p "~~~~~"
+menu.each do |key, value|
+  puts "#{key} - #{value}円" if value >= 350
+end
 
-p [100, 50, 300].sort
-p [100, 50, 300].sort.reverse
+p menu = {}
+menu.each do |key, value|
+  puts "#{key} - #{value}円"
+end
 
-p "cba".reverse
+arr = []
+menu.each_key do |key|
+  arr.push(key)
+end
 
-p ["100", "50", "300"].join(",")
+p arr
 
-p "100,50,300".split(",")
+arr = "caffelatte".chars
+hash = {}
+hash.default = 0
+arr.each do |chr|
+  hash[chr] += 1
+end
 
-p [1, 2, 3].map {|num| num * 3}
-
-p ["abc", "xyz"].map(&:reverse)
-
-p ["aya", "achi", "Tama"].map(&:downcase).sort
-
-p ["3", "5", "1"].map(&:to_i).sort
-
-p "coffee".to_sym
+p hash.keys
