@@ -1,67 +1,37 @@
-hash = {:coffee => 300, :caffe_latte => 400}
-p hash.class
-p Hash.new
+require_relative 'module'
 
-class CaffeLatte
-end
+class Drink
+  include WhippedCream
+  include ChocolateChip
 
-p CaffeLatte.new.class
-
-class Item
-  def name
-    "チーズケーキ"
-  end
-end
-item = Item.new
-p item.name
-
-
-class Item
-  def name=(text)
-    @name = text
-  end
-
-  def name
-    @name
-  end
-end
-
-item = Item.new
-p item.name = "チーズケーキ"
-
-class Item
-  def initialize
-    puts "商品を扱うオブジェクト"
-  end
-end
-
-p Item.new
-
-class Item
   def initialize(name)
     @name = name
   end
 
   def name
-    @name
+    @name    
   end
 end
 
-item1 = Item.new("マフィン")
-item2 = Item.new("スコーン")
+class Cake
+  include WhippedCream
+  def initialize(name)
+    @name = name
+  end
 
-p item1.name
-p item2.name
-
-class Drink
-  def self.todays_special
-    "ホワイトモカ"
+  def name
+    @name    
   end
 end
 
-class Food < Item
-end
+drink = Drink.new("モカ")
+# drink.whipped_cream
+drink.chocolate_chip
+puts drink.name
 
-food = Food.new
-p food.name = "チーズケーキ"
-p food.name
+cake = Cake.new("モンブラン")
+cake.whipped_cream
+puts cake.name
+
+puts EspressoShot::Price
+puts WhippedCream.info
