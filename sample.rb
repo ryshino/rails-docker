@@ -1,46 +1,52 @@
-menu1 = {coffee: 300, caffe_latte: 400}
-p menu1[:caffe_latte]
-
-menu2 = {"モカ" => "チョコレートシロップとミルク入り", "カフェラテ" => "ミルク入り"}
-p menu2["モカ"]
-
-menu1[:tea] = 300
-p menu1
-menu1.delete(:coffee)
-p menu1
-
-menu1.delete(:tea)
-menu1.default = "紅茶はありませんか？"
-p menu1[:tea]
-
-p "カフェラテください" if menu1[:caffe_latte] <= 500
-
-menu = {"コーヒー" => 300, "カフェラテ" => 400}
-menu.each do |key, value|
-  puts "#{key} - #{value}円"
-end
-p "~~~~~"
-menu.each do |key, value|
-  puts "#{key} - #{value}円" if value >= 350
+def order
+  puts "カフェラテください"
 end
 
-p menu = {}
-menu.each do |key, value|
-  puts "#{key} - #{value}円"
+order
+
+def area(x)
+  x * x
 end
 
-arr = []
-menu.each_key do |key|
-  arr.push(key)
+puts area(3)
+
+def dice
+  [1, 2, 3, 4, 5, 6].sample
 end
 
-p arr
+puts dice
 
-arr = "caffelatte".chars
-hash = {}
-hash.default = 0
-arr.each do |chr|
-  hash[chr] += 1
+def order(item)
+  "#{item}ください"
 end
 
-p hash.keys
+puts order("カフェラテ")
+puts order("モカ")
+
+def dice_core
+  [1, 2, 3, 4, 5, 6].sample
+end
+def dice
+  result = dice_core
+  return result unless result == 1
+
+  puts "もう一回！"
+  dice_core
+end
+
+puts dice
+
+def price(item, size = "ショート")
+  items = {"コーヒー" => 300, "カフェラテ" => 400}
+  sizes = {"ショート" => 0, "トール" => 50, "ベンティ" => 100}
+  items[item] + sizes[size]
+end
+
+puts price("コーヒー")
+puts price("カフェラテ", "トール")
+
+def order(drink)
+  puts "#{drink}"
+end
+
+order("コーヒー")
